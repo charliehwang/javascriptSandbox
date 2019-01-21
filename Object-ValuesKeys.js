@@ -12,10 +12,18 @@ test('Object.values', async (t) => {
 });
 
 test('String Padding', async (t) => {
-  const foodsDisplayed = Object.entries(food).map(([foodItem, foodAmt]) => {
-    // const [foodItem, foodAmt] = entry;
+  // const foodsDisplayed = Object.entries(food).map(([foodItem, foodAmt]) => {
+  //   return `${foodItem.padEnd(20, '-')}${foodAmt}`;
+  // });  // Does not pass ESLint-airbnb
+
+  const foodsDisplayed = Object.entries(food).map((entry) => {
+    const [foodItem, foodAmt] = entry;
     return `${foodItem.padEnd(20, '-')}${foodAmt}`;
   });
+
+  // const foodsDisplayed = [1, 2, 3].map((num) => ({ num }));
+  // const foodsDisplayed = [1, 2, 3].map((num) => num);
+  // const foodsDisplayed = [1, 2, 3].map(num => num);  // OK for ESLint-airbnb
 
   t.is(foodsDisplayed[0], 'carrots-------------4');
   t.is(foodsDisplayed[1], 'onions--------------3');
